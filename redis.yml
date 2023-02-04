@@ -1,0 +1,15 @@
+version: "2"
+services:
+  redis:
+    # *-----------------------------*
+    # To connect to the DB:
+    #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
+    # *-----------------------------*
+    image: redis:7.0.8
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass P@ssword789
+    volumes:
+      - ./redis_data:/data

@@ -1,0 +1,21 @@
+version: "2"
+services:
+  oracle:
+    # *-----------------------------*
+    # To connect to the DB:
+    #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
+    # *-----------------------------*
+          image: oracle:21.3.0-ee
+    container_name: oracle
+    restart: unless-stopped
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment: 
+      - ORACLE_PDB=oracle
+      - ORACLE_PWD=P@ssword789
+      - INIT_SGA_SIZE=3000
+      - INIT_PGA_SIZE=1000
+    volumes:
+      - /opt/oracle/oradata
+      - ./oradata:/opt/oracle/oradata

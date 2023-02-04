@@ -1,0 +1,16 @@
+version: "2"
+services:
+  mysql:
+    # *-----------------------------*
+    # To connect to the DB:
+    #   docker exec -it mysql bash -c 'mysql -u root -p P@ssword789'
+    # *-----------------------------*
+    image: mysql:8.0.32
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssword789
+        #    volumes:
+            #      - ./mysql:/etc/mysql
