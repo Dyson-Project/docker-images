@@ -1,23 +1,20 @@
 version: '2'
 
 services:
- rabbitmq-node-1:
+ rabbitmq:
   image: rabbitmq:3-management
-  container_name: rabbitmq-node-1
-  hostname: rabbitmq-node-1
+  container_name: rabbitmq
+  hostname: rabbitmq
   restart: unless-stopped
   ports:
    - "5672:5672"
    - "15672:15672"
    - "61613:61613"
-  networks:
-   - cluster-network
+  command:
+   - rabbitmq-plugins enable rabbitmq_stomp
   volumes:
-   - ./rabbitmq-node-1:/var/lib/rabbitmq
+   - ./rabbitmq:/var/lib/rabbitmq
   environment:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
    - RABBITMQ_DEFAULT_PASS=admin
-networks:
- cluster-network:
-  driver: bridge
