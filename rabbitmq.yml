@@ -1,5 +1,4 @@
 version: '2'
-
 services:
  rabbitmq:
   image: rabbitmq:3-management
@@ -16,3 +15,15 @@ services:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
    - RABBITMQ_DEFAULT_PASS=admin
+ rabbitmq-setup:
+  build: .
+  container_name: rabbitmq-setup
+  image: rabbitmq:3-management
+  restart: "no"
+  command: sh -c "rabbitmq-plugins enable rabbitmq_web_stomp"
+  volumes:
+   - ./rabbitmq_data:/var/lib/rabbitmq
+  depends_on:
+   - rabbitmq
+
+
