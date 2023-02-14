@@ -1,0 +1,10 @@
+version: "3"
+services:
+  zipkin:
+    image: openzipkin/zipkin:2
+    container_name: zipkin
+    restart: unless-stopped
+    ports:
+      - 9411:9411
+
+
