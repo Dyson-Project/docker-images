@@ -1,0 +1,17 @@
+version: "2"
+services:
+  openvpn-monitor:
+    image: ruimarinho/openvpn-monitor
+    container_name: openvpn-monitor
+    restart: unless-stopped
+    ports:
+      - "8070:80"
+    restart: unless-stopped
+    environment:
+      - OPENVPNMONITOR_DEFAULT_SITE=your-openvpn-site
+      - OPENVPNMONITOR_DEFAULT_MAPS=True
+      - OPENVPNMONITOR_DEFAULT_DATETIMEFORMAT=%d/%m/%Y %H:%M:%S
+      - OPENVPNMONITOR_SITES_0_HOST=14.225.205.235
+      - OPENVPNMONITOR_SITES_0_NAME=VPS_SERVER
+      - OPENVPNMONITOR_SITES_0_PORT=5555
+      - OPENVPNMONITOR_SITES_0_SHOWDISCONNECT=True
