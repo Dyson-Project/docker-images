@@ -1,0 +1,17 @@
+version: '2'
+services:
+  keycloak-17:
+    image: mihaibob/keycloak:17.0.0-legacy
+    container_name: keycloak-17
+    hostname: keycloak-17
+    ports: 
+     - "8889:8080"
+     - "8788:8787"
+    environment:
+     - KEYCLOAK_USER=admin
+     - KEYCLOAK_PASSWORD=admin
+     - DB_VENDOR=postgres
+     - DB_ADDR=172.17.0.1
+     - DB_DATABASE=keycloak-17
+     - DB_USER=postgres
+     - DB_PASSWORD=postgres

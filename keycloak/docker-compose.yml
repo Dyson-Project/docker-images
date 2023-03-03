@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:19.0.1
+    container_name: keycloak
+    hostname: keycloak
+    restart: unless-stopped
+    ports: 
+     - 8888:8080
+     - 8787:8787
+    environment:
+     KEYCLOAK_ADMIN: admin
+     KEYCLOAK_ADMIN_PASSWORD: admin
+     KC_DB: postgres
+     KC_DB_URL: jdbc:postgresql://172.17.0.1/keycloak-19
+     KC_DB_USERNAME: root
+     KC_DB_PASSWORD: P@ssword789
+     KC_DB_DATASBASE: keycloak-19
+    command:
+     - start-dev
+    network_mode: bridge

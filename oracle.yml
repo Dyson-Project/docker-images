@@ -5,7 +5,7 @@ services:
     # To connect to the DB:
     #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
     # *-----------------------------*
-          image: oracle:21.3.0-ee
+    image: tiktzuki/oracle:21.3.0-ee
     container_name: oracle
     restart: unless-stopped
     ports:
