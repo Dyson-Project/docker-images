@@ -10,7 +10,7 @@ services:
    - "15672:15672"
    - "61613:61613"
   volumes:
-   - ./rabbitmq_data:/var/lib/rabbitmq
+   - ~/docker/rabbitmq_data:/var/lib/rabbitmq
   environment:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
@@ -22,7 +22,7 @@ services:
   restart: "no"
   command: sh -c "rabbitmq-plugins enable rabbitmq_web_stomp"
   volumes:
-   - ./rabbitmq_data:/var/lib/rabbitmq
+   - ~/docker/rabbitmq_data:/var/lib/rabbitmq
   depends_on:
    - rabbitmq
 

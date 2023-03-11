@@ -1,6 +1,6 @@
 version: "2"
 services:
-  mysql:
+  mysql-8:
     # *-----------------------------*
     # To connect to the DB:
     #   docker exec -it mysql bash -c 'mysql -u root -p P@ssword789'
@@ -13,4 +13,4 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=P@ssword789
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - ~/docker/mysql_data:/var/lib/mysql

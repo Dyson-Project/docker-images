@@ -6,7 +6,6 @@ services:
     restart: unless-stopped
     ports:
       - "8070:80"
-    restart: unless-stopped
     environment:
       - OPENVPNMONITOR_DEFAULT_SITE=your-openvpn-site
       - OPENVPNMONITOR_DEFAULT_MAPS=True
