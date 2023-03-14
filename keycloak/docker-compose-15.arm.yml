@@ -1,0 +1,18 @@
+version: '2'
+services:
+  keycloak-15:
+    image: mihaibob/keycloak:15.0.1
+    container_name: keycloak-15
+    hostname: keycloak-15
+    ports: 
+     - "8889:8080"
+     - "9990:9990"
+     - "8788:8787"
+    environment:
+     - KEYCLOAK_USER=admin
+     - KEYCLOAK_PASSWORD=admin
+     - DB_VENDOR=postgres
+     - DB_ADDR=172.17.0.1
+     - DB_DATABASE=keycloak-15
+     - DB_USER=root
+     - DB_PASSWORD=P@ssword789
