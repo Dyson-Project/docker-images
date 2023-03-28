@@ -40,6 +40,30 @@ spec:
               port: 1125
             initialDelaySeconds: 30
             timeoutSeconds: 1
-          envFrom:
-            - configMapRef:
-                name: paygate
+          env:
+            - name: VPS
+              value: "14.225.205.235"
+            - name: DATABASE_URL
+              value: "jdbc:mysql://${VPS}:33306/guest"
+            - name: DATABASE_USER
+              value: "guest"
+            - name: DATABASE_PASSWORD
+              value: "P@ssword789"
+            - name: MONGO_URI
+              value: "mongodb://guest:P%40ssword789@${VPS}:37017/guest"
+            - name: REDIS_HOST
+              value: ${VPS}
+            - name: REDIS_PORT
+              value: "36379"
+            - name: REDIS_PASSWORD
+              value: "P@ssword789"
+            - name: CADENCE_HOST
+              value: ${VPS}
+            - name: CADENCE_PORT
+              value: "37933"
+            - name: CADENCE_DOMAIN
+              value: "paygate-dev"
+            - name: CADENCE_WF_ACT_INTERVAL
+              value: "30"
+            - name: CADENCE_WF_ACT_START_TO_CLOSE
+              value: "40"
