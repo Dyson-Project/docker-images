@@ -36,7 +36,7 @@ spec:
             - containerPort: 1125
           livenessProbe:
             httpGet:
-              path: /
+              path: /swagger-ui/index.html
               port: 1125
             initialDelaySeconds: 30
             timeoutSeconds: 1
