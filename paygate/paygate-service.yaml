@@ -42,4 +42,4 @@ spec:
             timeoutSeconds: 1
           envFrom:
             - configMapRef:
-                name: paygate-config
+                name: paygate
