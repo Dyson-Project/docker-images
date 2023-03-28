@@ -40,3 +40,6 @@ spec:
               port: 1125
             initialDelaySeconds: 30
             timeoutSeconds: 1
+          envFrom:
+            - configMapRef:
+                name: paygate-config
