@@ -44,7 +44,7 @@ spec:
             - name: VPS
               value: "14.225.205.235"
             - name: PAYGATE_HOST
-              value: "http://${VPS}:1125"
+              value: "http://${VPS}:31125"
             - name: IBFT_CLIENT_ID
               value: "838e919b-ce19-43bf-b338-75adbe045726"
             - name: IBFT_SECRET_KEY
