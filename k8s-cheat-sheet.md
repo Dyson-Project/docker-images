@@ -16,3 +16,8 @@ kubectl -n my-ns delete pod,svc --all                             # Delete all p
 # Delete all pods matching the awk pattern1 or pattern2
 kubectl get pods  -n mynamespace --no-headers=true | awk '/pattern1|pattern2/{print $1}' | xargs  kubectl delete -n mynamespace pod
 ```
+
+## Restart running pod
+```shell
+kubectl get pod <pod_name> -n <namespace> -o yaml | kubectl replace --force -f -
+```

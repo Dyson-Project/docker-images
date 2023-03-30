@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    app: prometheus
+spec:
+  type: NodePort
+  selector:
+    app: prometheus
+  ports:
+    - protocol: TCP
+      port: 9090
+      name: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paygate
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - image: prom/prometheus:v2.17.1
+          name: prometheus
+          volumeMounts:
+            - name: config # log volume
+              mountPath: /etc/prometheus # mounted at /var/log/nginx in the container
+            - name: storage # log volume
+              mountPath: /prometheus # mounted at /var/log/nginx in the container
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          command: [
+            "--config.file=/etc/prometheus/prometheus.yml",
+            '--storage.tsdb.path=/prometheus',
+            '--web.console.libraries=/etc/prometheus/console_libraries',
+            '--web.console.templates=/etc/prometheus/consoles',
+            '--storage.tsdb.retention.time=200h',
+            '--web.enable-lifecycle',
+          ]
+      volumes:
+        - name: config
+          hostPath: # hostPath volume
+            path: /var/prometheus # folder of woker node
+        - name: storage
+          hostPath: # hostPath volume
+            path: /home/rdteam/prometheus_data # folder of woker node
