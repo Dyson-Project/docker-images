@@ -67,3 +67,5 @@ spec:
               value: "30"
             - name: CADENCE_WF_ACT_START_TO_CLOSE
               value: "40"
+            - name: MAX_TIMESTAMP_DIFF_MS
+              value: "50000"
