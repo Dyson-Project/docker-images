@@ -46,7 +46,7 @@ spec:
             - name: DATABASE_URL
               value: "jdbc:mysql://${VPS}:33306/guest"
             - name: DATABASE_USER
-              value: "guest"
+              value: "root"
             - name: DATABASE_PASSWORD
               value: "P@ssword789"
             - name: MONGO_URI
@@ -54,7 +54,7 @@ spec:
             - name: REDIS_HOST
               value: ${VPS}
             - name: REDIS_PORT
-              value: "36379"
+              value: "16379"
             - name: REDIS_PASSWORD
               value: "P@ssword789"
             - name: CADENCE_HOST
@@ -68,4 +68,6 @@ spec:
             - name: CADENCE_WF_ACT_START_TO_CLOSE
               value: "40"
             - name: MAX_TIMESTAMP_DIFF_MS
-              value: "50000"
+              value: "100000"
+            - name: MAXIMUM_POOL_SIZE
+              value: "100"
