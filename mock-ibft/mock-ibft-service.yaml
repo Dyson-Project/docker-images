@@ -52,4 +52,10 @@ spec:
             - name: IBFT_ENCRYPT_KEY
               value: "6EB00D84532E5006CF86A237DE038D9A"
             - name: MAX_TIMESTAMP_DIFF_MS
-              value: "30000"
+              value: "100000"
+            - name: REDIS_HOST
+              value: "${VPS}"
+            - name: REDIS_PORT
+              value: "36379"
+            - name: REDIS_PASSWORD
+              value: "P@ssword789"
