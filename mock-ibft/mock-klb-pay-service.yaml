@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-klb-pay
+  labels:
+    app: mock-klb-pay
+spec:
+  type: NodePort
+  selector:
+    app: mock-klb-pay
+  ports:
+    - protocol: TCP
+      port: 1892
+      name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mock-klb-pay
+spec:
+  selector:
+    matchLabels:
+      app: mock-klb-pay
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mock-klb-pay
+    spec:
+      containers:
+        - name: mock-klb-pay
+          image: tiktzuki/mock-ibft:latest
+          ports:
+            - containerPort: 1892
+          livenessProbe:
+            httpGet:
+              path: /swagger-ui/index.html
+              port: 1892
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          env:
+            - name: VPS
+              value: "14.225.205.235"
+            - name: PAYGATE_HOST
+              value: "http://${VPS}:31125"
+            - name: IBFT_CLIENT_ID
+              value: "838e919b-ce19-43bf-b338-75adbe045726"
+            - name: IBFT_SECRET_KEY
+              value: "6EB00D84532E5006CF86A237DE038D9A"
+            - name: IBFT_ENCRYPT_KEY
+              value: "6EB00D84532E5006CF86A237DE038D9A"
+            - name: MAX_TIMESTAMP_DIFF_MS
+              value: "100000"
+            - name: REDIS_HOST
+              value: "${VPS}"
+            - name: REDIS_PORT
+              value: "36379"
+            - name: REDIS_PASSWORD
+              value: "P@ssword789"
