@@ -56,6 +56,6 @@ spec:
             - name: REDIS_HOST
               value: "${VPS}"
             - name: REDIS_PORT
-              value: "36379"
+              value: "16379"
             - name: REDIS_PASSWORD
               value: "P@ssword789"
