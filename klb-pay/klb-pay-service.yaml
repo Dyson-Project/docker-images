@@ -44,7 +44,7 @@ spec:
             - name: VPS
               value: "14.225.205.235"
             - name: DATABASE_URL
-              value: "jdbc:mysql://${VPS}:23306/guest"
+              value: "jdbc:mysql://${VPS}:23306/klb-pay"
             - name: DATABASE_USER
               value: "root"
             - name: DATABASE_PASSWORD
