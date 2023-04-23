@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redmine-trickster
+  labels:
+    app: redmine-trickster
+spec:
+  type: NodePort
+  selector:
+    app: redmine-trickster
+  ports:
+    - protocol: TCP
+      port: 1772
+      name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redmine-trickster
+spec:
+  selector:
+    matchLabels:
+      app: redmine-trickster
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redmine-trickster
+    spec:
+      containers:
+        - name: redmine-trickster
+          image: tiktzuki/redmine-trickster:latest
+          ports:
+            - containerPort: 1772
+          livenessProbe:
+            httpGet:
+              path: http://127.0.0.1:1772/login
+              port: 1772
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          env:
+            - name: VPS
+              value: "14.225.205.235"
+            - name: SERVICE_PRO
+              value: true
+            - name: BOT_PRO_TOKEN
+              value: 123
